@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(158, 65, 246);
+}
+
+header {
+  background-color: blueviolet;
+  width: 100vw;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.App {
+  margin: auto;
+  max-width: 800px;
+  height: 100vh;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.filter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-select {
+  width: 100%;
+}
+
+select {
+  background-color: blueviolet;
+  border-radius: 5px;
+  border: 1px solid blueviolet;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.5em 2em 0.5em 0.5em;
+  border: 1px solid #eee;
+  font: inherit;
+  line-height: inherit;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 15px top 1em, right 10px top 1em;
+  background-size: 5px 5px, 5px 5px;
+}
+
+select {
+  margin-left: 10px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid blueviolet;
+  background: blueviolet;
+  color: white;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  color: #c5c3c3;
+}
+
+.cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  gap: 20px;
+}
+
+.card {
+  padding: 15px;
+  color: blueviolet;
+  border: 10px solid rgb(205, 157, 250);
+  background-color: white;
+  border-radius: 15px;
+}
+
+.photo img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  /* border: 5px solid #c5c3c3; */
+}
+
+.card p,
+span,
+h3 {
+  color: blueviolet;
+}
+
+.entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.entete button {
+  border: none;
+  cursor: pointer;
+}
+
+.entete span:first-child {
+  font-weight: 700;
+  font-size: large;
+}
+
+.entete .badge-red {
+  background-color: rgb(249, 191, 191);
+  color: white;
+  border-radius: 25px;
+  padding: 5px;
+}
+.entete .badge-green {
+  background-color: rgb(191, 249, 194);
+  color: white;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer button {
+  background-color: rgb(75, 75, 254);
+  font-weight: 600;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
