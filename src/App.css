@@ -80,7 +80,6 @@ input {
   background: blueviolet;
   color: white;
   border-radius: 5px;
-  text-transform: uppercase;
 }
 
 input::placeholder {

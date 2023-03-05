@@ -99,24 +99,11 @@ function App() {
     },
   ]);
 
-  const [filters, setFilters] = useState([
-    { filteName: "all", filterValue: "All" },
-  ]);
+  const [query, setQuery] = useState("");
+
+  const [filters, setFilters] = useState([]);
 
   const [selectedRace, setSelectedRace] = useState("all");
-
-  //const { types } = useType(cards);
-
-  // const onlyUnique = (value, index, array) => {
-  //   return array.indexOf(value) === index;
-  // };
-
-  // const races = cards
-  //   .map((value, index, array) => {
-  //     console.log(value.race);
-  //     return value.race;
-  //   })
-  //   .filter(onlyUnique);
 
   const races = useMap({
     unique: true,
@@ -144,18 +131,44 @@ function App() {
   const locations = useMap({ unique: true, field: "location", array: cards });
 
   const checkFilter = (obj) => {
-    console.log(obj);
+    //console.log(obj);
     const newFilters = [...filters];
-    const elementExists = newFilters.includes(obj);
+    //console.log(newFilters.filter((e) => e.name === obj.name).length > 0);
+
+    const elementExists =
+      newFilters.filter((e) => e.name === obj.name).length > 0;
     if (!elementExists) {
-      obj !== undefined && newFilters.push(obj);
+      if (obj !== undefined && obj.name.length !== 0) {
+        newFilters.push(obj);
+      }
+    } else {
+      newFilters[newFilters.findIndex((x) => x.name == obj.name)] = obj;
     }
-    console.log(newFilters);
+    //console.log(newFilters);
+    setFilters(newFilters);
+  };
+
+  const doFilter = (myfilters) => {
+    console.log(myfilters);
+    myfilters.map((value, index) => {
+      console.log(value, index);
+      //cards.filter((elt) => console.log(elt[value.name], elt[val.value]));
+    });
+
+    /**
+     * card=> myfilters.map((value,index)=>{
+      
+    })
+     */
+    //cards.filter();
   };
 
   useEffect(() => {
-    checkFilter();
-  }, []);
+    doFilter(filters);
+    //cards.filter(doFilter(filters));
+  }, [filters]);
+
+  //console.log(cards.filter((item) => item.name.toLowerCase().includes(query)));
 
   return (
     <>
@@ -171,8 +184,8 @@ function App() {
                 id="race"
                 onChange={(event) => {
                   checkFilter({
-                    filteName: event.target.getAttribute("name"),
-                    filterValue: event.target.value,
+                    name: event.target.getAttribute("name"),
+                    value: event.target.value,
                   });
                   setSelectedRace(event.target.value);
                 }}
@@ -193,8 +206,8 @@ function App() {
                 id="type"
                 onChange={(event) => {
                   checkFilter({
-                    filteName: event.target.getAttribute("name"),
-                    filterValue: event.target.value,
+                    name: event.target.getAttribute("name"),
+                    value: event.target.value,
                   });
                 }}
               >
@@ -214,8 +227,8 @@ function App() {
                 id="location"
                 onChange={(event) => {
                   checkFilter({
-                    filteName: event.target.getAttribute("name"),
-                    filterValue: event.target.value,
+                    name: event.target.getAttribute("name"),
+                    value: event.target.value,
                   });
                 }}
               >
@@ -231,20 +244,26 @@ function App() {
               </select>
             </div>
             <div className="filter-input">
-              <input type="text" placeholder="Search.." />
+              <input
+                type="search"
+                placeholder="Search.."
+                onChange={(e) => setQuery(e.target.value)}
+              />
             </div>
           </div>
           <div className="cards">
-            {cards.map((value, index) => {
-              return (
-                <Card
-                  className="card"
-                  value={value}
-                  key={value.name + index}
-                  index={index}
-                />
-              );
-            })}
+            {cards
+              .filter((item) => item.name.toLowerCase().includes(query))
+              .map((value, index) => {
+                return (
+                  <Card
+                    className="card"
+                    value={value}
+                    key={value.name + index}
+                    index={index}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>
